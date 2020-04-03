@@ -13,8 +13,8 @@ class CaseCountryDao {
   Future<List<CaseCountry>> getAllCases() async {
     var response = await http.get(Uri.parse(this._url));
     List responseJson = json.decode(response.body);
-    print('data from url $responseJson');
     if (response.statusCode == 200) {
+      print('data from url $responseJson');
       return responseJson
           .map((caseCountry) => new CaseCountry.fromJson(caseCountry))
           .toList();
