@@ -47,7 +47,7 @@ Widget buildBody(CaseCountry caseCountry) {
         ),
         trailing: Icon(Icons.more_vert),
         onTap: () {
-          print("clicked");
+          print(caseCountry.toString());
         },
       ),
       Divider(
@@ -58,120 +58,43 @@ Widget buildBody(CaseCountry caseCountry) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Cases",
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  height: 15,
-                  thickness: 1,
-                  endIndent: 3,
-                  indent: 3,
-                ),
-                Text(
-                  caseCountry.cases.toString(),
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Colors.blue[600]),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "active",
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  height: 15,
-                  thickness: 1,
-                  endIndent: 3,
-                  indent: 3,
-                ),
-                Text(
-                  caseCountry.active.toString(),
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Colors.red),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "deaths",
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  height: 15,
-                  thickness: 1,
-                  endIndent: 3,
-                  indent: 3,
-                ),
-                Text(
-                  caseCountry.deaths.toString(),
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Colors.black87),
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "recovered",
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  height: 15,
-                  thickness: 1,
-                  endIndent: 3,
-                  indent: 3,
-                ),
-                Text(
-                  caseCountry.recovered.toString(),
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      color: Colors.green),
-                )
-              ],
-            ),
-          )
+          getTable("Cases", caseCountry, Colors.blue[600]),
+          getTable("active", caseCountry, Colors.red),
+          getTable("deaths", caseCountry, Colors.black87),
+          getTable("recovered", caseCountry, Colors.green)
         ],
       )
     ],
+  );
+}
+
+Widget getTable(String name, CaseCountry caseCountry, Color color) {
+  return Expanded(
+    child: Column(
+      children: <Widget>[
+        Text(
+          name,
+          style: TextStyle(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
+              fontSize: 15),
+        ),
+        Divider(
+          color: Colors.grey,
+          height: 15,
+          thickness: 1,
+          endIndent: 3,
+          indent: 3,
+        ),
+        Text(
+          caseCountry.recovered.toString(),
+          style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              color: color),
+        )
+      ],
+    ),
   );
 }

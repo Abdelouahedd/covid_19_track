@@ -14,7 +14,6 @@ class CaseCountryDao {
     var response = await http.get(Uri.parse(this._url));
     List responseJson = json.decode(response.body);
     if (response.statusCode == 200) {
-      print('data from url $responseJson');
       return responseJson
           .map((caseCountry) => new CaseCountry.fromJson(caseCountry))
           .toList();

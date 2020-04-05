@@ -13,17 +13,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<CaseCountry> listCase = new List<CaseCountry>();
-  
+
   @override
   void initState() {
     super.initState();
-
-    this.setState(() {
-      new CaseCountryDao()
-          .getAllCases()
-          .then((value) => listCase = value)
-          .catchError((onError) => print(onError));
-    });
+    new CaseCountryDao()
+        .getAllCases()
+        .then((value) => {
+              // print(value)
+              this.setState(() {
+                listCase = value;
+              })
+            })
+        .catchError((onError) => print(onError));
   }
 
   @override
@@ -42,14 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
           : Center(
               child: CircularProgressIndicator(),
             ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //   this.setState(() {
-      //     new CaseCountryDao()
-      //         .getAllCases()
-      //         .then((value) => listCase = value)
-      //         .catchError((onError) => print(onError));
-      //   });
-      // }),
     );
   }
 }
