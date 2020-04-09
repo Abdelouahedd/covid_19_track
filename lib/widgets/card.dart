@@ -18,12 +18,12 @@ class Mycard extends StatelessWidget {
           height: 140,
           color: Colors.white24,
           width: MediaQuery.of(context).size.width / 2,
-          child: buildBody(country)),
+          child: buildBody(context, country)),
     );
   }
 }
 
-Widget buildBody(CaseCountry caseCountry) {
+Widget buildBody(BuildContext context, CaseCountry caseCountry) {
   return Column(
     children: <Widget>[
       ListTile(
@@ -48,6 +48,33 @@ Widget buildBody(CaseCountry caseCountry) {
         trailing: Icon(Icons.more_vert),
         onTap: () {
           print(caseCountry.toString());
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Container(
+                height: MediaQuery.of(context).size.height / 2,
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Row(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            caseCountry.country,
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
         },
       ),
       Divider(
@@ -58,17 +85,17 @@ Widget buildBody(CaseCountry caseCountry) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          getTable("Cases", caseCountry, Colors.blue[600]),
-          getTable("active", caseCountry, Colors.red),
-          getTable("deaths", caseCountry, Colors.black87),
-          getTable("recovered", caseCountry, Colors.green)
+          getTable("Cases", caseCountry.cases.toString(), Colors.blue[600]),
+          getTable("active", caseCountry.active.toString(), Colors.red),
+          getTable("deaths", caseCountry.deaths.toString(), Colors.black87),
+          getTable("recovered", caseCountry.recovered.toString(), Colors.green)
         ],
       )
     ],
   );
 }
 
-Widget getTable(String name, CaseCountry caseCountry, Color color) {
+Widget getTable(String name, String type, Color color) {
   return Expanded(
     child: Column(
       children: <Widget>[
@@ -87,7 +114,7 @@ Widget getTable(String name, CaseCountry caseCountry, Color color) {
           indent: 3,
         ),
         Text(
-          caseCountry.recovered.toString(),
+          type,
           style: TextStyle(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,

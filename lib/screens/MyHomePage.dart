@@ -1,6 +1,7 @@
 import 'package:covid_19_track/controller/CaseCountryDAo.dart';
 import 'package:covid_19_track/model/CaseCountry.dart';
 import 'package:covid_19_track/widgets/card.dart';
+import 'package:covid_19_track/widgets/searchField.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<CaseCountry> listCase = new List<CaseCountry>();
   List<CaseCountry> filtredlistCase = new List<CaseCountry>();
+
   final TextEditingController _filter = new TextEditingController();
   String _searchText = "";
   Widget _appBarTitle = new Text('Covid-19 track');
@@ -24,16 +26,15 @@ class _MyHomePageState extends State<MyHomePage> {
     new CaseCountryDao()
         .getAllCases()
         .then((value) => {
-              // print(value)
               this.setState(() {
                 listCase = value;
-                filtredlistCase = listCase;
+                filtredlistCase = listCase
+                    .where((element) => element.country.isNotEmpty)
+                    .toList();
               })
             })
         .catchError((onError) => print(onError));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,21 +51,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.all(8.0),
-              child: new TextField(
-                controller: _filter,
-                onChanged: _ExamplePageState(),
-                decoration: new InputDecoration(
-                    prefixIcon: new Icon(Icons.search),
-                    hintText: 'Search...',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25)))),
-              ),
+              child: SearchField(_filter, _changeStateOfTextField),
             ),
             Expanded(
-              child: listCase.length != 0
+              child: filtredlistCase.length != 0
                   ? _buildList()
                   : Center(child: CircularProgressIndicator()),
-            )
+            ),
           ],
         ),
       ),
@@ -72,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _ExamplePageState() {
+  _changeStateOfTextField() {
     _filter.addListener(() {
       if (_filter.text.isEmpty) {
         setState(() {

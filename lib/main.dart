@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: "Track codis-19",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       home: new MyHomePage(),
       // onGenerateRoute: (RouteSettings settings) {
