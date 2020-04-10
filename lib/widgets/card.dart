@@ -1,6 +1,8 @@
 import 'package:covid_19_track/model/CaseCountry.dart';
 import 'package:flutter/material.dart';
 
+import 'SnackBarStatistique.dart';
+
 class Mycard extends StatelessWidget {
   final CaseCountry country;
   Mycard(this.country);
@@ -47,32 +49,12 @@ Widget buildBody(BuildContext context, CaseCountry caseCountry) {
         ),
         trailing: Icon(Icons.more_vert),
         onTap: () {
-          print(caseCountry.toString());
           Scaffold.of(context).showSnackBar(
             SnackBar(
-              content: Container(
-                height: MediaQuery.of(context).size.height / 2,
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            caseCountry.country,
-                            style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              backgroundColor: Colors.white10,
+              content:
+                  //SnackBarStatistique(caseCountry)
+                  PieOutsideLabelChart(country: caseCountry),
             ),
           );
         },
