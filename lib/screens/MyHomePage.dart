@@ -25,14 +25,14 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     new CaseCountryDao()
         .getAllCases()
-        .then((value) => {
+        .then((value) => 
               this.setState(() {
                 listCase = value;
                 filtredlistCase = listCase
                     .where((element) => element.country.isNotEmpty)
                     .toList();
               })
-            })
+            )
         .catchError((onError) => print(onError));
   }
 

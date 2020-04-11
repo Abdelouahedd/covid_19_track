@@ -49,13 +49,9 @@ Widget buildBody(BuildContext context, CaseCountry caseCountry) {
         ),
         trailing: Icon(Icons.more_vert),
         onTap: () {
-          Scaffold.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.white10,
-              content:
-                  //SnackBarStatistique(caseCountry)
-                  PieOutsideLabelChart(country: caseCountry),
-            ),
+          showBottomSheet(
+            context: context,
+            builder: (context) => PieOutsideLabelChart(country: caseCountry),
           );
         },
       ),

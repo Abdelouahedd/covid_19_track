@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SearchField extends StatefulWidget {
-  TextEditingController _filter = new TextEditingController();
-  var _changeStateOfTextField;
+  final TextEditingController _filter;
+  final _changeStateOfTextField;
   SearchField(this._filter, this._changeStateOfTextField);
 
   @override

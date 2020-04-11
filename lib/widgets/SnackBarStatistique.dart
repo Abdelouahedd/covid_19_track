@@ -30,11 +30,10 @@ class _PieOutsideLabelChartState extends State<PieOutsideLabelChart> {
   Widget build(BuildContext context) {
     return Container(
       decoration: new BoxDecoration(
-          // color: Colors.grey[100],
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Color(0xB3BCCC), Color(0xDBE3F0)]),
+              colors: [Colors.blueGrey,Colors.blueGrey[200]]),
           borderRadius: new BorderRadius.only(
               topLeft: const Radius.circular(40.0),
               topRight: const Radius.circular(40.0))),
@@ -58,7 +57,7 @@ class _PieOutsideLabelChartState extends State<PieOutsideLabelChart> {
             ),
             PieChart(
               dataMap: data,
-              colorList: _colors,
+              // colorList: _colors,
               animationDuration: Duration(milliseconds: 1500),
               chartLegendSpacing: 32.0,
               chartRadius: MediaQuery.of(context).size.width / 2.5,
