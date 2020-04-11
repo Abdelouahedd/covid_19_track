@@ -1,7 +1,16 @@
 # covid_19_track
 
-A new Flutter project.
+<p>List of all counties </p>
 
+![alt text](https://raw.githubusercontent.com/Abdelouahedd/covid_19_track/master/images/img2.png)
+<p>Search for a country</p>
+
+![alt text](https://raw.githubusercontent.com/Abdelouahedd/covid_19_track/master/images/img3.png)
+
+<p>Statistic of selected country</p>
+
+![alt text](https://raw.githubusercontent.com/Abdelouahedd/covid_19_track/master/images/img1.png)
+ 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
